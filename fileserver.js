@@ -1,10 +1,14 @@
+/*Return any file specified after host host:port/pathname*/
+//Add dependencies
 var http = require('http');
 var url = require('url');
 var fs = require('fs');
 
 http.createServer(function(req, res){
+    //Get filename from url
 var q = url.parse(req.url, true);
 var filename = "." + q.pathname;
+//look for file and if found return data
 fs.readFile(filename, function(err,data){
     if(err){
         res.writeHead(404, {'Content-Type':'text/html'});
